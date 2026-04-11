@@ -2,3 +2,4 @@ flask
 playwright==1.40.0
 beautifulsoup4
 gunicorn
+greenlet==3.0.3
