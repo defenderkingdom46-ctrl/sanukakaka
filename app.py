@@ -1,3 +1,6 @@
+import os
+os.environ["PLAYWRIGHT_BROWSERS_PATH"] = "0"
+
 from flask import Flask, request, jsonify
 from playwright.sync_api import sync_playwright
 
