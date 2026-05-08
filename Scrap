@@ -1,0 +1,65 @@
+from flask import Flask, jsonify
+import asyncio
+from playwright.async_api import async_playwright
+
+app = Flask(__name__)
+
+async def get_links_by_name(movie_name):
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True) # Headless for the API
+        page = await browser.new_page()
+
+        # 1. SEARCH PHASE
+        print(f"🔍 Searching for: {movie_name}")
+        # WordPress search URL format
+        search_url = f"https://cinesubz.lk/?s={movie_name.replace(' ', '+')}"
+        await page.goto(search_url)
+
+        # Get the first movie link result
+        # Usually, these are inside <h3> or <h2> tags in the search results
+        first_result = await page.query_selector("article h2 a") 
+        if not first_result:
+            await browser.close()
+            return {"error": "Movie not found"}
+
+        movie_url = await first_result.get_attribute("href")
+        print(f"🔗 Found movie URL: {movie_url}")
+
+        # 2. SCRAPE PHASE (Our previous logic)
+        await page.goto(movie_url)
+        
+        # Click 720p
+        await page.get_by_text("720p", exact=False).first.click()
+        
+        # Wait for "Go to Download" (the 1-second delay handler)
+        go_btn = page.get_by_text("Go to Download", exact=False)
+        await go_btn.wait_for(state="visible", timeout=5000)
+        
+        # Use a context manager to catch the new tab
+        async with page.context.expect_page() as new_page_info:
+            await go_btn.click()
+        
+        final_page = await new_page_info.value
+        await final_page.wait_for_load_state("networkidle")
+
+        # Extract links
+        links_found = []
+        links = await final_page.query_selector_all("a")
+        for link in links:
+            href = await link.get_attribute("href")
+            text = await link.inner_text()
+            if href and any(x in href.lower() for x in ["gdrive", "mega", "pixeldrain", "drive"]):
+                links_found.append({"source": text.strip(), "url": href})
+
+        await browser.close()
+        return {"movie": movie_name, "links": links_found}
+
+@app.route('/scrape/<name>')
+def home(name):
+    # Flask is synchronous, but Playwright is asynchronous. 
+    # We use asyncio.run to bridge them.
+    data = asyncio.run(get_links_by_name(name))
+    return jsonify(data)
+
+if __name__ == '__main__':
+    app.run(port=3000, debug=True)
