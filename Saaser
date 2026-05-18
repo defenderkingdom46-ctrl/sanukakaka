@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Cyber Lab</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --neon-green: #00ff41; /* Matrix Green */
+            --dark-green: #0d2b12;
+            --bg-color: #050505;
+            --card-bg: #0a0f0a;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --border-color: #1a3b20;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-white);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span { color: var(--neon-green); }
+        .logo i { color: var(--neon-green); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-white);
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--neon-green);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--neon-green);
+            bottom: -5px;
+            left: 0;
+        }
+
+        .cta-btn {
+            background: transparent;
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-btn:hover {
+            background: var(--neon-green);
+            color: black;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            display: flex;
+            padding: 120px 5% 60px;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(circle at top right, #0f2412 0%, #050505 60%);
+            position: relative;
+        }
+
+        /* Matrix rain effect background placeholder */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0; right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 0;
+            mask-image: linear-gradient(to right, transparent, black);
+            -webkit-mask-image: linear-gradient(to right, transparent, black);
+        }
+
+        .hero-content {
+            flex: 1;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .tagline {
+            color: var(--neon-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        h1 .highlight {
+            color: var(--neon-green);
+        }
+
+        .hero-text {
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-primary {
+            background: var(--card-bg);
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: rgba(0, 255, 65, 0.1);
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn-secondary:hover {
+            border-color: white;
+        }
+
+        /* Hero Image Area */
+        .hero-image {
+            flex: 1;
+            position: relative;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* The Hooded Figure Image */
+        .hacker-img {
+            height: 100%;
+            width: auto;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 65, 0.2));
+            z-index: 1;
+            /* Using a transparent PNG placeholder of a hacker */
+            content: url('https://cdn-icons-png.flaticon.com/512/2889/2889447.png'); 
+            opacity: 0.9;
+            filter: invert(1) hue-rotate(180deg) brightness(0.8) sepia(1) saturate(5) hue-rotate(50deg); /* Filter to make it green/dark */
+        }
+        
+        /* Since I can't guarantee the PNG filter works exactly like the screenshot across all browsers, 
+           I'm using a CSS constructed representation for the "Laptop" overlay */
+        .laptop-logo {
+            position: absolute;
+            bottom: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--neon-green);
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            box-shadow: 0 0 20px rgba(0,255,65,0.3);
+        }
+        
+        .laptop-logo i {
+            font-size: 3rem;
+            color: var(--neon-green);
+        }
+
+        /* Floating Widgets */
+        .widget {
+            position: absolute;
+            background: rgba(10, 20, 15, 0.9);
+            border: 1px solid var(--neon-green);
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 10;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            min-width: 180px;
+        }
+
+        .widget-title {
+            color: var(--neon-green);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .widget-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .widget-sub {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .widget-users {
+            top: 50px;
+            right: 50px;
+        }
+
+        .widget-status {
+            bottom: 80px;
+            right: 40px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--neon-green);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        /* --- Features Section --- */
+        .features {
+            padding: 50px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            background-color: var(--bg-color);
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid #1a1a1a;
+            padding: 30px;
+            border-radius: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            border-color: var(--neon-green);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 255, 65, 0.1);
+        }
+
+        .icon-box {
+            font-size: 2rem;
+            color: var(--neon-green);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* --- Footer Strip --- */
+        .footer-strip {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 5%;
+            border-top: 1px solid #1a1a1a;
+            margin-top: 50px;
+            background: #020202;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .trust-icon {
+            color: var(--neon-green);
+            font-size: 1.2rem;
+        }
+
+        .trust-text h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .trust-text p {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                padding-top: 100px;
+                text-align: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                width: 100%;
+                height: 400px;
+                margin-top: 40px;
+            }
+
+            .widget { display: none; } /* Hide floating widgets on mobile for cleaner look */
+            .laptop-logo { display: none; }
+            
+            nav {
+                justify-content: center;
+            }
+            .nav-links, .cta-btn {
+                display: none;
+            }
+            
+            .footer-strip {
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <i class="fa-solid fa-shield-halved"></i>
+            AURA <span>CYBER LAB</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">Labs</a></li>
+            <li><a href="#">Writeups</a></li>
+            <li><a href="#">Tools</a></li>
+            <li><a href="#">Learning</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+        <button class="cta-btn">
+            Get In Touch <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="tagline">Ethical Hacking & Cyber Security</span>
+            <h1>HACK THE SYSTEM,<br> <span class="highlight">NOT THE ETHICS.</span></h1>
+            <p class="hero-text">
+                AURA CYBER LAB is your gateway to ethical hacking, cybersecurity research, and hands-on labs. <br><br>
+                Learn. Hack. Secure.
+            </p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">
+                    <i class="fa-solid fa-flask"></i> Explore Labs
+                </a>
+                <a href="#" class="btn-secondary">
+                    <i class="fa-regular fa-file-lines"></i> View Writeups
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <!-- The Laptop Logo Overlay -->
+            <div class="laptop-logo">
+                <i class="fa-solid fa-caret-up"></i> <!-- Mimicking the 'A' shape roughly -->
+            </div>
+
+            <!-- Floating Widgets -->
+            <div class="widget widget-users">
+                <div class="widget-title">Active Users</div>
+                <div class="widget-value">1,248+</div>
+                <div class="widget-sub">ONLINE <i class="fa-solid fa-arrow-trend-up"></i></div>
+            </div>
+
+            <div class="widget widget-status">
+                <div class="widget-title">Server Status</div>
+                <div class="widget-sub">
+                    <span class="status-dot"></span> OPERATIONAL
+                </div>
+            </div>
+            
+            <!-- The Hacker Image -->
+            <img class="hacker-img" alt="Hacker">
+        </div>
+    </section>
+
+    <!-- Feature Cards Grid -->
+    <section class="features">
+        <div class="feature-card">
+            <div class="icon-box"><i class="fa-solid fa-flask"></i></div>
+            <h3>Hands-on Labs</h3>
+            <p>Practice real-world hacking in a safe and legal environment.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon-box"><i class="fa-solid fa-file-lines"></i></div>
+            <h3>Writeups & Guides</h3>
+            <p>Step-by-step writeups and in-depth guides.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon-box"><i class="fa-solid fa-terminal"></i></div>
+            <h3>Security Tools</h3>
+            <p>Handpicked tools for penetration testers and researchers.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon-box"><i class="fa-solid fa-book-open"></i></div>
+            <h3>Learning Resources</h3>
+            <p>Curated resources to level up your cybersecurity skills.</p>
+        </div>
+    </section>
+
+    <!-- Bottom Trust Strip -->
+    <footer class="footer-strip">
+        <div class="trust-item">
+            <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="trust-text">
+                <h4>100% LEGAL</h4>
+                <p>Ethical Hacking</p>
+            </div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-icon"><i class="fa-solid fa-laptop-code"></i></div>
+            <div class="trust-text">
+                <h4>PRACTICAL</h4>
+                <p>Hands-on Labs</p>
+            </div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="trust-text">
+                <h4>EDUCATIONAL</h4>
+                <p>Learn & Grow</p>
+            </div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-icon"><i class="fa-solid fa-users"></i></div>
+            <div class="trust-text">
+                <h4>COMMUNITY</h4>
+                <p>Grow Together</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
