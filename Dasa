@@ -1,0 +1,36 @@
+Create a futuristic full-stack cyberpunk-themed website called “GLITCH VOID” for the brand Angel Glitchers. The website should feel like entering a high-tech digital laboratory or futuristic cyber command center. The overall visual style must combine neon green glowing effects, black backgrounds, glassmorphism panels, cyberpunk UI elements, smooth animations, holographic visuals, digital overlays, subtle glitch effects, and immersive futuristic transitions. The website should look modern, cinematic, minimal, and extremely polished while maintaining excellent readability and responsive behavior on both desktop and mobile devices.
+
+The website must be built as a complete frontend and backend system. Use a modern frontend stack such as React with Tailwind CSS for styling and animations. Use component-based architecture for scalability and maintainability. The backend should use Node.js with Express.js and should not require a traditional database. Instead, use a lightweight JSON-based storage system where all downloadable resource data is stored dynamically inside local JSON files. The backend should expose API endpoints for adding, editing, deleting, and retrieving resource cards. The frontend should automatically fetch and render these resources dynamically.
+
+The homepage should function as a cinematic landing page rather than a normal website homepage. Include a large animated hero section displaying the logo “GLITCH VOID” with the subtitle “By Angel Glitchers.” Add a futuristic tagline such as “ENTER THE DIGITAL VOID” or “BUILD. LEARN. EVOLVE.” The hero section should contain glowing neon buttons leading to the resource vault and community links. The background should include animated cyber grids, moving particles, digital scan lines, subtle matrix-like code rain, glowing overlays, and ambient animated effects that create the feeling of a futuristic operating system boot screen.
+
+Below the hero section, add animated live counters showing statistics such as total resources, total downloads, active systems, and latest uploads. These counters should animate upward when loaded. Add a futuristic features section using large glowing square panels or cards with hover effects. The cards should slightly elevate and intensify their glow on hover. Add smooth page scrolling and transitions between sections. Include a fake terminal section displaying animated command-line text such as “Initializing GLITCH VOID systems...” or “Loading encrypted modules...” to increase immersion.
+
+Create a separate dedicated “Resource Vault” page accessible from the homepage. This page should display all downloadable resources as glowing futuristic cards arranged inside a responsive grid layout. Every card should contain a title, short description, category label, icon or image, and a glowing download button. Clicking a resource card or button should redirect users to external links such as MediaFire, Google Drive, GitHub, Mega, Telegram, or other download platforms. The resource cards should be generated dynamically from backend data instead of being hardcoded into the frontend.
+
+Create a hidden password-protected admin dashboard accessible only through a secret route such as “/void-admin-panel” or another hidden URL. The admin page must not appear in public navigation menus. When accessed, display a futuristic authentication screen with neon input fields and animated cyber UI effects. After entering the correct password, open a secure admin dashboard where the administrator can manage resource cards dynamically.
+
+Inside the admin dashboard, create a complete resource management system with forms allowing the administrator to:
+
+Add new resource cards
+
+Edit existing cards
+
+Delete cards
+
+Upload or specify image/icon URLs
+
+Add titles
+
+Add descriptions
+
+Add download URLs
+
+Add button text
+
+
+After submitting the form, the backend should instantly update the JSON storage and the frontend should automatically reflect the new resource card without requiring manual code edits. The admin dashboard should include animated notifications, glowing success alerts, futuristic loading animations, and smooth UI interactions.
+
+The entire website should use consistent cyberpunk typography with fonts such as Orbitron, Rajdhani, or Exo 2. Use deep black backgrounds combined with neon green, cyan, and subtle holographic accents. Add smooth glowing borders, animated shadows, hover effects, soft reflections, digital distortion animations, and cinematic transitions throughout the site. Add a futuristic loading screen before the homepage fully loads, including a glowing logo animation and system boot text effects.
+
+Optimize the website for speed, responsiveness, and modern performance standards. Use responsive layouts for mobile devices and ensure animations remain smooth. Structure the project cleanly using reusable frontend components, organized backend routes, API services, and modular styling architecture. The final result should feel like a professional cyberpunk operating system interface mixed with a futuristic creator resource hub designed specifically for the Angel Glitchers brand and the GLITCH VOID ecosystem.
